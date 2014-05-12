@@ -119,11 +119,13 @@ def extend_num(arg):
 def to_rsync_path(path):
     """转换成rsync模式的路径"""
     if platform.system()=='Windows':
-        path=os.path.abspath(path)
-        path=path.replace('\\','/')
-        path=path.replace(':','')
-        path='/cygdrive/'+path
-        return path
+        rsync__path=os.path.abspath(path)
+        rsync__path=rsync__path.replace('\\','/')
+        rsync__path=rsync__path.replace(':','')
+        rsync__path='/cygdrive/'+rsync__path
+        if path.endswith('\\'):
+            rsync__path+='/'
+        return rsync__path
     else:
         return path
 
